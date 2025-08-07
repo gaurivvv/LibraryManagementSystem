@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -6,38 +6,53 @@ public class Main {
         Library lib = new Library();
 
         while (true) {
-            System.out.println("\n1. Add Book\n2. View Books\n3. Issue Book\n4. Return Book\n5. Exit");
+            System.out.println("\n1. Add Book");
+            System.out.println("2. View Books");
+            System.out.println("3. Issue Book");
+            System.out.println("4. Return Book");
+            System.out.println("5. Exit");
             System.out.print("Choose: ");
-            int ch = sc.nextInt();
+            int choice = sc.nextInt();
+            sc.nextLine(); // clear newline
 
-            switch (ch) {
+            switch (choice) {
                 case 1:
-                    System.out.print("Enter ID, Title, Author: ");
+                    System.out.print("Enter ID: ");
                     int id = sc.nextInt();
                     sc.nextLine(); // consume newline
+
+                    System.out.print("Enter Title: ");
                     String title = sc.nextLine();
+
+                    System.out.print("Enter Author: ");
                     String author = sc.nextLine();
+
                     lib.addBook(new Book(id, title, author));
+                    System.out.println("Book added!");
                     break;
+
                 case 2:
-                    lib.viewBooks();
+                    lib.showBooks();
                     break;
+
                 case 3:
-                    System.out.print("Enter Book ID to issue: ");
+                    System.out.print("Enter book ID to issue: ");
                     int issueId = sc.nextInt();
                     lib.issueBook(issueId);
                     break;
+
                 case 4:
-                    System.out.print("Enter Book ID to return: ");
+                    System.out.print("Enter book ID to return: ");
                     int returnId = sc.nextInt();
                     lib.returnBook(returnId);
                     break;
+
                 case 5:
                     System.out.println("Exiting...");
-                    sc.close();
                     return;
+
                 default:
-                    System.out.println("Invalid choice!");
+                    System.out.println("Invalid choice. Try again.");
             }
         }
     }
